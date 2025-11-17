@@ -1,35 +1,46 @@
-class MyQueue<T> {
+import java.util.LinkedList;
 
-    public MyQueue() {
-    }
+class MyQueue<T> extends LinkedList<T> {
 
     public void enqueue(T item) {
+        this.addLast(item);
     }
+
 
     public T dequeue() {
-        return queue.first();
-    }
-    
-    public boolean isEmpty() {
-        return queue.isEmpty();
+        return this.pollFirst();
     }
 
-    // 返回队列中的元素数量
+    public boolean isEmpty() {
+        return super.isEmpty();
+    }
+
     public int size() {
-        return queue.size();
+        return super.size();
     }
 }
 
 public class QueueExample {
     public static void main(String[] args) {
-        MyQueue<Integer> intQueue = new MyQueue<>();
-        //do some test if needed
+
+        MyQueue<Integer> queue = new MyQueue<>();
+
+        queue.enqueue(10);
+        queue.enqueue(20);
+
+        System.out.println("size = " + queue.size());        
+        System.out.println("dequeue = " + queue.dequeue());  
+        System.out.println("isEmpty = " + queue.isEmpty());  
+
+        MyQueue<Person> personQueue = new MyQueue<>();
+        personQueue.enqueue(new Person("John", 18));
+        personQueue.enqueue(new Person("Mary", 20));
+
+        System.out.println(personQueue.dequeue()); 
     }
 }
 
 
-//我的Junit測試會測這個Object，這邊以下請不要修改
-//---------------------------------------------------------------------------------
 class Person {
     private String name;
     private int age;
@@ -44,4 +55,3 @@ class Person {
         return "Person{name='" + name + "', age=" + age + "}";
     }
 }
-//---------------------------------------------------------------------------------
